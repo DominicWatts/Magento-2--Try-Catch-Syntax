@@ -1,0 +1,19 @@
+private $logger; 
+
+public function __construct(\Psr\Log\LoggerInterface $logger) 
+{ 
+    $this->logger = $logger; 
+}
+
+public function doSomething() 
+{ 
+    try { 
+        /* Some logic that could throw an Exception */ 
+    } catch (\Exception $e) { 
+        $this->logger->addDebug($message); // log location: var/log/system.log 
+        $this->logger->addInfo($message); // log location: var/log/exception.log 
+        $this->logger->addNotice($message); // log location: var/log/exception.log 
+        $this->logger->addError($message); // log location: var/log/exception.log 
+        $this->logger->critical($e); // log location: var/log/exception.log 
+    }
+} 
